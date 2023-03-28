@@ -1,6 +1,9 @@
 package com.jack.test;
 
+import com.jack.dao.BalanceDao;
 import com.jack.dao.DepartmentDao;
+import com.jack.pojo.Balance;
+import com.jack.pojo.BalanceExample;
 import com.jack.pojo.department;
 import com.jack.pojo.deptDemo;
 import org.apache.ibatis.io.Resources;
@@ -69,5 +72,20 @@ public class AppTest {
         sqlSession.commit();
         sqlSession.close();
     }
+    @Test
+    public  void  TestCountDept2() throws IOException {
+        SqlSessionFactory builder = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"));
+        SqlSession sqlSession =builder.openSession();
+        BalanceDao balanceDao=sqlSession.getMapper(BalanceDao.class);
+        BalanceExample example=new BalanceExample();
+        BalanceExample.Criteria criteria=example.createCriteria();
+        criteria.andNameLike("B%");
+        criteria.andAmountGreaterThanOrEqualTo("5000");
+        long n=balanceDao.countByExample(example);
+        System.out.println(n);
+
+        sqlSession.commit();
+        sqlSession.close();
     }
+}
 

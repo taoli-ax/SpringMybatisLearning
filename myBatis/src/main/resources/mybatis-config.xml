@@ -19,7 +19,8 @@
         </environment>
     </environments>
 <mappers>
-    <mapper resource="com/jack/departmentMapper.xml"></mapper>
+    <mapper resource="com/jack/dept/departmentMapper.xml"></mapper>
+    <mapper resource="com/jack/dao/BalanceDao.xml"></mapper>
 <!--    <mapper class="com.jack.dao.DepartmentDao"></mapper>&lt;!&ndash;注解方法&ndash;&gt;-->
 </mappers>
 </configuration>
